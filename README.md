@@ -1,4 +1,8 @@
-A ROS 2 Jazzy demo featuring a 4-DOF robot arm controlled via natural German language commands using a Groq/LLaMA LLM.
+
+[Bildschirmaufzeichnung vom 2026-03-20 05-16-25.webm](https://github.com/user-attachments/assets/325f1b2a-bb3b-4550-9c24-57b927e174c8)
+The video is a small demonstration, where I even made a small spelling mistake, however, the model understood perfectly the Command.
+
+A ROS 2 Jazzy demo featuring a 4-DOF robot arm controlled via natural German language commands using a Groq(LLaMA LLM).
 
 ## Architecture
 ```
@@ -43,7 +47,7 @@ If nodes behave unexpectedly, kill stale processes first:
 pkill -f robot_state_publisher && pkill -f controller_manager && pkill -f spawner
 ```
 
-## Docker
+## Docker (for headless)
 ```bash
 # Create .env file
 echo "GROQ_API_KEY=your_key" > .env
@@ -52,7 +56,7 @@ echo "GROQ_API_KEY=your_key" > .env
 docker compose -f docker/docker-compose.yml up -d
 
 # Attach to interactive prompt
-docker attach docker-ai_controller-1
+docker attach docker-ai_controller-1 (so you can still type your prompts)
 
 # Stop
 docker compose -f docker/docker-compose.yml down
