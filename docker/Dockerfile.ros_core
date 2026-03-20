@@ -1,0 +1,19 @@
+FROM ros:jazzy-ros-base
+
+SHELL ["/bin/bash", "-lc"]
+
+RUN apt-get update && apt-get install -y \
+    ros-jazzy-ros2-control \
+    ros-jazzy-ros2-controllers \
+    ros-jazzy-robot-state-publisher \
+    ros-jazzy-xacro \
+    python3-colcon-common-extensions \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /ros2_ws
+COPY src/ /ros2_ws/src/
+
+RUN source /opt/ros/jazzy/setup.bash && \
+    colcon build --packages-select simple_robot_gripper
+
+ENTRYPOINT ["/ros_entrypoint.sh"]

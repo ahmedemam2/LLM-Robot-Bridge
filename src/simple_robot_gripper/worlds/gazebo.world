@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <world name="default">
+    <physics name="ode" type="ode">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Ground%20Plane</uri>
+    </include>
+    <include>
+      <uri>https://fuel.gazebosim.org/1.0/OpenRobotics/models/Sun</uri>
+    </include>
+  </world>
+</sdf>

@@ -1,0 +1,26 @@
+services:
+  ros_core:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ros_core
+    network_mode: host
+    environment:
+      - ROS_DOMAIN_ID=0
+    command: >
+      bash -lc "source /ros2_ws/install/setup.bash &&
+                ros2 launch simple_robot_gripper headless_rviz.launch.py"
+
+  ai_controller:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.ai_controller
+    network_mode: host
+    stdin_open: true
+    tty: true   #stdin und tty so that docker gets a terminal for prompts
+    environment:
+      - ROS_DOMAIN_ID=0
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - GROQ_MODEL=${GROQ_MODEL:-llama-3.3-70b-versatile}
+    command: >
+      bash -lc "source /opt/ros/jazzy/setup.bash &&
+            python3 /ros2_ws/src/simple_robot_gripper/scripts/move_robot.py"

@@ -1,0 +1,15 @@
+FROM ros:jazzy-ros-base
+
+SHELL ["/bin/bash", "-lc"]
+
+RUN apt-get update && apt-get install -y \
+    python3-pip \
+    ros-jazzy-rclpy \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --no-cache-dir --break-system-packages langchain_groq
+
+WORKDIR /ros2_ws
+COPY src/ /ros2_ws/src/
+
+ENTRYPOINT ["/ros_entrypoint.sh"]
