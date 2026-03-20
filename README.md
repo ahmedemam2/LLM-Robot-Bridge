@@ -80,9 +80,3 @@ docker/
 ├── Dockerfile.ai_controller
 └── docker-compose.yml
 ```
-
-## Notes
-
-- `.env` is gitignored — never hardcode API keys
-- Visualization (RViz2/Gazebo) runs locally; containers run headless
-- `ros_core` uses `mock_components/GenericSystem` — no real hardware needed
